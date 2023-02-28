@@ -1,0 +1,42 @@
+{{/*
+
+    {# ------------------------------------------------------- #}
+    {# LIST FOR AUTHORS                                        #}
+    {# ------------------------------------------------------- #}
+      
+*/}}
+
+{{ define "main" }}
+  <h1 class="pill">Authors</h1>
+
+  <ul class="author--list">
+    {{ range sort .Pages "Title" }}
+    <li>
+      <a href="{{.Permalink}}">
+        <picture>
+          {{ $imgsm := replace .Params.primary_image "/upload/" "/upload/w_200,h_200,c_fill,g_face/" }}
+          {{ $imglg := replace .Params.primary_image "/upload/" "/upload/w_400,h_400,c_fill,g_face/" }}
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkkAQAAB8AG7jymN8AAAAASUVORK5CYII=" data-srcset="{{ $imgsm }} 1x, {{ $imglg }} 2x" alt="{{ .Title | htmlUnescape }}" media="(min-width: 40em)" class="lazyload">
+        </picture>
+
+        <span class="author--list_item-name">
+          {{.Title}}
+        </span>
+
+        {{- $author := .File.Path -}}
+        {{- $articles := where (.Site.RegularPages) "Type" "articles" -}}
+        {{- $related_articles := $articles.RelatedTo ( keyVals "author" $author ) -}}
+       
+        <span class="author--list_item-articles">
+          {{- if (gt (len $related_articles) 1)  }}
+          {{ len $related_articles }}&nbsp;posts
+          {{- else -}}
+          {{ len $related_articles }}&nbsp;post
+          {{- end }}
+        </span>
+      </a>
+    </li>
+
+    {{ end }}
+  </ul>
+{{ end }}

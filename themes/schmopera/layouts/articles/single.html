@@ -1,0 +1,333 @@
+{{/*
+
+  {# ------------------------------------------------------- #}
+  {# INDIVIDUAL VIEW FOR EACH ARTICLE                        #}
+  {# ------------------------------------------------------- #}
+    
+*/}}
+
+{{/* meta data */}}
+
+{{- define "og_title" -}}{{ .Title | htmlUnescape }}{{- end -}}
+{{- define "og_type" -}}article{{- end -}}
+{{- define "og_url" -}}{{ .Permalink }}{{- end -}}
+{{- define "og_image" -}}{{ replace .Params.primary_image "/upload/" "/upload/w_740,h_740,c_fill,g_faces/" }}{{- end -}}
+{{- define "og_description" -}}{{ .Params.short_description | htmlUnescape }}{{- end -}}
+
+{{- define "main" -}}
+
+{{- /* Schema */ -}}
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://www.schmopera.com"
+    },
+    "headline": "{{ .Title }}",
+    "image": {
+      "@type": "ImageObject",
+      "url": "{{ replace .Params.primary_image "/upload/" "/upload/w_740,h_740,c_fill,g_faces/" }}",
+      "height": 740,
+      "width": 740
+    },
+    "datePublished": "{{ .Params.date }}",
+    "dateModified": "{{ .Params.date }}",
+    {{- /* TODO: Fix author array generation -}}
+    "author": {
+        {{ if .Params.author -}}
+          {{ $aaa := index (.Params.author) 0}}
+            {{ range $.Site.GetPage "page" $aaa -}}
+        "@type": "Person",
+        "name": "{{ .Title }}"
+            {{ end -}}
+        {{ end -}}
+    },
+    {{- */}}
+     "publisher": {
+      "@type": "Organization",
+      "name": "Schmopera",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "http://www.schmopera.com/static/images/logo.png",
+        "width": 800,
+        "height": 800
+      }
+    },
+    "description": "{{ .Params.short_description | plainify }}"
+  }
+  </script>
+
+  <article class="post--single">
+
+  {{- /* Primary Hero */}}
+    <section class="post--single_hero">
+      <picture>
+        {{ $imgsm := replace .Params.primary_image "/upload/" "/upload/w_740,h_740,c_fill,g_faces/" -}}
+        {{- $imglg := replace .Params.primary_image "/upload/" "/upload/w_1480,h_1480,c_fill,g_faces/" -}}
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkkAQAAB8AG7jymN8AAAAASUVORK5CYII=" data-srcset="{{ $imgsm }} 1x, {{ $imglg }} 2x" alt="{{ .Title | htmlUnescape }}" media="(min-width: 40em)" class="lazyload">
+      </picture>
+      {{- with .Params.primary_image_credit }}
+      <span class="post--single_hero-credit"><span>{{ . }}</span></span>
+      {{- end }}
+      <div class="post--list-title">
+        <h1><span title="{{ .Title | htmlUnescape }}">{{ .Title | htmlUnescape }}</span></h1>
+        {{- with .Params.categories }}
+        <em class="post--meta-category">{{ . }}</em>
+        {{- end }}
+      </div>
+    </section>
+
+
+  {{- /* Authors */}}  
+    <section class="post--single_authors">
+  {{- with .Params.author }}
+    {{- range $author := . }}
+      {{- with $.Site.GetPage "page" $author }}
+      <a href="{{ .Permalink }}">
+        <picture class="post--meta-author_image">
+          {{- $imgsm := replace .Params.primary_image "/upload/" "/upload/w_80,h_80,c_fill,g_face/" }}
+          {{- $imglg := replace .Params.primary_image "/upload/" "/upload/w_160,h_160,c_fill,g_face/" }}
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=" data-srcset="{{ $imgsm }} 1x, {{ $imglg }} 2x" alt="{{ .Title | htmlUnescape }}" media="(min-width: 40em)" class="lazyload">
+        </picture>
+        <em>{{ .Title }}</em>
+      </a>
+      {{- end }}
+    {{- end }}
+  {{- end }}
+      <span class="post--meta-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+    </section>    
+
+  {{- /* Disclaimer */}}
+  {{ if .Params.disclaimer -}}
+    <section class="post--single_disclaimer">
+      {{ .Params.disclaimer | markdownify }}
+    </section>
+  {{- end -}}
+
+
+  {{- /* Preamble */}}
+  {{- if .Params.preamble }}
+    <section class="post--single_preamble">
+      {{ .Params.preamble | markdownify }}
+    </section>
+  {{- end -}}
+
+
+  {{- /* Post Content */}}
+  {{- if .Content }}
+    <section class="post--single_body">
+      {{ .Content }}
+    </section>
+  {{- end -}}
+
+
+  {{- /* Postamble */}}
+  {{- if .Params.postamble }}
+    <section class="post--single_postamble">
+      {{ .Params.postamble | markdownify }}
+    </section>
+  {{- end -}}
+
+  {{- /* video content */}}
+  {{- if .Params.youtube_url }}
+    <section class="post--single_body">
+      <figure data-type="video" id="youtube_player">
+
+      </figure>
+    </section>
+
+    <script>
+      var myId = getId('{{ .Params.youtube_url }}');
+
+      function getId(url) {
+        var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        var match = url.match(regExp);
+
+        if (match && match[2].length == 11) {
+          return match[2];
+        } else {
+          return 'error';
+        }
+      }
+      
+      var player = document.getElementById('youtube_player');
+
+      player.innerHTML = '<iframe width="560" height="315" src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>';
+    </script>
+  {{- end -}}
+
+  {{- /*
+
+    TODO:
+    Gallery
+    
+    {% if item.gallery|size !== 0 %}
+    <section class="post--single_gallery">
+      <h2 class="pill">Gallery</h2>
+
+      <ul class="gallery">
+      {% for image in item.gallery %}
+        <li>
+          {# You can get the raw image url by accessing image.url #}
+          <a href="{ image.url }" data-lightbox="{ image|imageSize(1360, 1360) }" rel="lightbox" title="{ image.caption }">
+            <img src="{ image|imageCrop(200, 200) }" alt="{ image.caption }">
+          </a>
+        </li>
+      {% endfor %}
+      </ul>
+    </section>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() { initGallery(); });
+    </script>
+    {% endif %}
+  */ -}}
+
+  
+  {{- /* Social Shares */}}
+    <section class="post--single_social">
+      <nav class="nav--share">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}" class="social--facebook pill"><i class="icon-facebook"></i> Facebook <em class="social--count_facebook" data-url="{{ .Permalink }}"></em></a>
+        <a href="https://twitter.com/share?url={{ .Permalink }}&via=schmopera&text={{ .Title | safeURL }}" class="social--twitter pill"><i class="icon-twitter"></i> Twitter <em class="social--count_twitter" data-url="{{ .Permalink }}"></em></a>
+      </nav>
+    </section>
+
+
+  {{- /* Previous and Next Articles */}}
+    <nav class="post--single_jump">
+      {{- with .PrevInSection }}
+      <a href="{{.Permalink}}" title="Previous" class="post--single_jump-prev">
+        <i class="icon-arrow-left"></i>
+        <span>{{.Title | htmlUnescape}}</span>
+      </a>
+      {{- end -}}
+      {{- with .NextInSection -}}
+      <a href="{{.Permalink}}" title="Next" class="post--single_jump-next">
+        <i class="icon-arrow-right"></i>
+        <span>{{.Title | htmlUnescape }}</span>
+      </a>
+      {{- end }}
+    </nav>
+
+
+  {{- /* Adspot 1 
+    <section class="post--single_adspot">
+      {{- partial "ad-spot1.html" . -}}
+    </section>
+  */ -}}
+
+
+  {{- /* 
+    
+    TODO:
+    Author details
+
+    <section class="post--single_authors">
+      <h2 class="pill">Written by</h2>
+    {% for author in item.authors %}
+      <div class="post--single_author">
+        {% set srcset = author.photo|imageCrop(100, 100) + ", " +  author.photo|imageCrop(200, 200) + " 2x" %}
+        <picture>
+          <source srcset="{ srcset }" media="(min-width: 40em)">
+          <img src="{ author.photo|imageCrop(100, 100) }" alt="{ author.name }">
+        </picture>
+
+        <h2>{ author.name }</h2>
+
+        <div class="post--single_author-bio">
+          { author.short_bio|markdown }
+        </div>
+        <nav class="post--single_author-meta">
+          <a href="{ url(author) }" class="btn">More info</a>
+        </nav>
+      </div>
+    {% endfor %}
+    </section>
+  */ -}}
+
+
+  {{- /* Related Content */}}
+
+  {{- with .Params.related_articles }}
+    <section class="post--single_related">
+      <h2 class="pill">Related Content</h2>
+      <ul class="post--list __mini">
+      {{- range $article := . -}}
+        {{- with $.Site.GetPage "page" $article -}}
+        <li class="post--list-item">
+          <a href="{{.Permalink}}" class="post--list-item">
+            <picture class="post--list-image">
+              {{- $imgsm := replace .Params.primary_image "/upload/" "/upload/w_370,h_245,c_fill,g_faces/" }}
+              {{- $imglg := replace .Params.primary_image "/upload/" "/upload/w_740,h_490,c_fill,g_faces/" }}
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkkAQAAB8AG7jymN8AAAAASUVORK5CYII=" data-srcset="{{ $imgsm }} 1x, {{ $imglg }} 2x" alt="{{ .Title | htmlUnescape }}" media="(min-width: 40em)" class="lazyload">
+            </picture>
+            <div class="post--list-title">
+              <h1><span title="{{ .Title | htmlUnescape }}">{{ .Title | htmlUnescape }}</span></h1>
+              {{- with .Params.categories }}
+              <em class="post--meta-category">{{ . }}</em>
+              {{- end }}
+            </div>
+          </a>
+        </li>
+        {{- end -}}
+      {{- end -}}
+      </ul>
+    </section>
+  {{- end -}}
+
+
+  {{- /* People and Companies - The Scene */}}
+
+  {{- if (or (.Params.related_people) (.Params.related_companies)) }}
+    <section class="post--single_scene">
+      <h2 class="pill">Mentions</h2> 
+      <nav>
+        <ul>
+      {{- with .Params.related_people -}}
+        {{- range $person := . -}}
+          {{- with $.Site.GetPage "page" $person -}}
+          <li>
+              <a href="{{.Permalink}}">
+                {{- $imgsm := replace .Params.primary_image "/upload/" "/upload/w_100,h_100,c_fill,g_face/" }}
+                {{- $imglg := replace .Params.primary_image "/upload/" "/upload/w_200,h_200,c_fill,g_face/" }}
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=" data-srcset="{{ $imgsm }} 1x, {{ $imglg }} 2x" alt="{{ .Title | htmlUnescape }}" media="(min-width: 40em)" class="lazyload">
+                <span>{{ .Title | htmlUnescape }}</span>
+              </a>
+          </li>
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+      {{- with .Params.related_companies -}}
+        {{- range $company := . -}}
+          {{- with $.Site.GetPage "page" $company -}}
+          <li>
+              <a href="{{.Permalink}}">
+                {{- $imgsm := replace .Params.primary_image "/upload/" "/upload/w_100,h_100,c_fill,g_face/" }}
+                {{- $imglg := replace .Params.primary_image "/upload/" "/upload/w_200,h_200,c_fill,g_face/" }}
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=" data-srcset="{{ $imgsm }} 1x, {{ $imglg }} 2x" alt="{{ .Title | htmlUnescape }}" media="(min-width: 40em)" class="lazyload">
+                <span>{{ .Title | htmlUnescape }}</span>
+              </a>
+          </li>
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+        </ul>
+      </nav>
+    </section>
+  {{- end -}}
+
+
+  {{- /* Comments from Disqus */}}
+    <section class="post--single_comments" id="comments">
+      <h2 class="pill">Comments</h2>
+
+      <div id="disqus_thread"></div>
+      <script type="text/javascript"> var disqus_shortname = 'schmopera'; (function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true; dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })();</script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    </section>
+  </article>
+
+{{- end -}}

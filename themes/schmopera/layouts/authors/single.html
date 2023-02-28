@@ -1,0 +1,143 @@
+{{/*
+
+  {# ------------------------------------------------------- #}
+  {# INDIVIDUAL VIEW FOR EACH PERSON                         #}
+  {# ------------------------------------------------------- #}
+  
+*/}}
+
+{{/* meta data */}}
+
+{{- define "og_title" -}}{{ .Title | htmlUnescape }}{{- end -}}
+{{- define "og_type" -}}profile{{- end -}}
+{{- define "og_url" -}}{{ .Permalink }}{{- end -}}
+{{- define "og_image" -}}{{ replace .Params.primary_image "/upload/" "/upload/w_740,h_740,c_fill,g_face/" }}{{- end -}}
+{{- define "og_description" -}}{{ .Summary }}{{- end -}}
+
+{{- define "main" -}}
+
+{{- /*
+
+  TODO
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"http://www.schmopera.com"
+    },
+    "headline": "{{ .Title }}",
+    "image": {
+      "@type": "ImageObject",
+      "url": "{ item.primary_image|imageCrop(800, 800) }",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "{ item.publish_date }",
+    "dateModified": "{ item.publish_date }",
+    "author": {
+      {% for relation in item.authors %}
+        "@type": "Person",
+        "name": "{ relation.name }"
+      {% endfor %}
+    },
+     "publisher": {
+      "@type": "Organization",
+      "name": "Schmopera",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "http://www.schmopera.com/static/images/logo.png",
+        "width": 800,
+        "height": 800
+      }
+    },
+    "description": "{ item.short_description }"
+  }
+  </script>
+
+*/ -}}
+
+  <article class="scene--single __person">
+    <header class="scene--single_masthead">
+      {{ $type := (split .File.Dir "/") }}
+      <h1 class="pill"><a href="/authors/">Authors</a></h1>
+      <h1 class="pill ___sub">{{ .Title | htmlUnescape }}</h1>
+    </header>
+
+    <section class="scene--single_hero">
+      <a href="{{ .Params.primary_image }}" rel="lightbox" data-lightbox='{{ replace .Params.primary_image "/upload/" "/upload/w_1360,h_1360,c_fill,g_face/" }}' title="{{ .Title }}{{ with .Params.primary_image_credit }} - Photo by {{ . }} {{ end }}">
+        <figure>
+          <picture>
+            {{- $imgsm := replace .Params.primary_image "/upload/" "/upload/w_300,h_300,c_fill,g_face/" -}}
+            {{- $imglg := replace .Params.primary_image "/upload/" "/upload/w_600,h_600,c_fill,g_face/" }}
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkkAQAAB8AG7jymN8AAAAASUVORK5CYII=" data-srcset="{{ $imgsm }} 1x, {{ $imglg }} 2x" alt="{{ .Title | htmlUnescape }}" media="(min-width: 40em)" class="lazyload">
+          </picture>      
+
+          {{- with .Params.primary_image_credit }}
+          <figcaption>{{ . }}</figcaption>
+          {{- end }}
+        </figure>
+      </a>
+
+      <div class="single--scene_meta">  
+        {{ if .Params.social_media }}
+        <nav class="nav--share">
+        {{ if .Params.website }}
+        <a href="{{ .Params.website }}" class="social--web pill" target="_blank"><i class="icon-web"></i>Website</a>
+        {{ end }}
+        {{ range .Params.social_media }}
+          <a href="{{ .url }}" class="pill social--{{ .platform|lower }}" target="_blank"><i class="icon-{{ .platform|lower }}"></i>{{ .platform }}</a>
+        {{ end }}
+        </nav>
+        {{ end }}
+      </div>
+    </section>
+
+    <section class="scene--single_bio">
+      {{ .Content }}
+    </section>
+    
+    <nav class="scene--single_articles">
+      <h1 class="pill">Published Articles</h1>
+
+      <ul class="post--list __mini">
+        {{- $author := .File.Path -}}
+        {{- $articles := where (.Site.RegularPages) "Type" "articles" -}}
+        {{- $related_articles := $articles.RelatedTo ( keyVals "author" $author ) -}}
+        {{- range $related_articles -}}
+        <li class="post--list-item">
+            <a href="{{.Permalink}}" class="post--list-item">
+              <picture class="post--list-image">
+                {{- $imgsm := replace .Params.primary_image "/upload/" "/upload/w_370,h_245,c_fill,g_faces/" }}
+                {{- $imglg := replace .Params.primary_image "/upload/" "/upload/w_740,h_490,c_fill,g_faces/" }}
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkkAQAAB8AG7jymN8AAAAASUVORK5CYII=" data-srcset="{{ $imgsm }} 1x, {{ $imglg }} 2x" alt="{{ .Title | htmlUnescape }}" media="(min-width: 40em)" class="lazyload">
+              </picture>
+              <div class="post--list-title">
+                <h1><span title="{{ .Title | htmlUnescape }}">{{ .Title | htmlUnescape }}</span></h1>
+                {{- with .Params.categories }}
+                <em class="post--meta-category">{{ . }}</em>
+                {{- end }}
+              </div>
+            </a>
+          </li>
+        {{- end -}}
+      </ul>
+
+    </nav>
+
+    {{/*
+
+  {# Adspot 1 #}
+    <section class="scene--single_adspot">
+{% include "templates/partials/ad-spot1.html" %}
+    </section>
+    */}}
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() { initGallery(); });
+    </script>
+  </article>
+
+{{- end -}}

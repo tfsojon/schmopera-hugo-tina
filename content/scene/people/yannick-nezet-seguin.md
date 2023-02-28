@@ -1,0 +1,45 @@
+---
+date: "2015-11-25T10:59:00-05:00"
+discipline: Conductor
+lastmod: "2015-11-25T10:59:00-05:00"
+primary_image: https://res.cloudinary.com/schmopera/image/upload/v1657552291/media/2022/07/YannickNezetSeguin_ChrisLee_duedeu.jpg
+primary_image_credit: Chris Lee.
+publishDate: "2015-11-25T10:59:00-05:00"
+related_companies:
+- scene/companies/lopra-de-montral.md
+- scene/companies/the-metropolitan-opera.md
+- scene/companies/salzburg-festival.md
+- scene/companies/royal-opera-house.md
+- scene/companies/teatro-alla-scala.md
+slug: yannick-nezet-seguin
+social_media:
+- platform: Facebook
+  _template: social_media
+  url: https://www.facebook.com/pages/Yannick-N%C3%A9zet-S%C3%A9guin/103782322994297?fref=ts
+- platform: Twitter
+  _template: social_media
+  url: https://twitter.com/nezetseguin
+- platform: Instagram
+  _template: social_media
+  url: https://www.instagram.com/nezetseguin/
+- platform: Youtube
+  _template: social_media
+  url: https://www.youtube.com/channel/UCftkbCdeSHJzQueLYCbs5zA
+title: Yannick Nézet-Séguin
+website: http://www.yannicknezetseguin.com/
+_template: "people_single"
+---
+In September 2018, Yannick Nézet-Séguin becomes the third Music Director of the Metropolitan Opera, New York. Music Director of the Philadelphia Orchestra since 2012 and the Orchestre Métropolitain of Montreal since 2000, he becomes Honorary Conductor of the Rotterdam Philharmonic Orchestra after being their Music Director from 2008 to 2018. He is also Honorary Member of the Chamber Orchestra of Europe.
+
+Yannick has worked with many leading European ensembles and enjoys close collaborations with Berliner Philharmoniker, Wiener Philharmoniker, Bayerischer Rundfunk Sinfonieorchester and Chamber Orchestra of Europe; between 2008 and 2014, he was also Principal Guest Conductor of London Philharmonic Orchestra. He has appeared many times at the BBC Proms and at many European festivals, among them Edinburgh, Lucerne, Salzburg and Grafenegg (Vienna). North American summer appearances include New York's Mostly Mozart Festival, Lanaudiere, Vail and Saratoga along with Domaine Forget Festival in Charlevoix. With the Philadelphia Orchestra, he goes regularly to Carnegie Hall where he has been Perspectives Artist in 2019-2020. He also conducts master classes, notably at two of the most renowned institutions, the Curtis Institute of Philadelphia and the Julliard School of New York.
+
+The year 2013-2014 marks the beginning of his three years of residence at the Konzerthaus Dortmund during which he conducted the Philadelphia Orchestra, the London Philharmonic Orchestra, the Chamber Orchestra of Europe, the Philharmonic Orchestra Rotterdam, the Bavarian Radio Orchestra, the Philharmonic Orchestras of Berlin and Vienna as well as several chamber orchestras. Subsequently, a long-term collaboration with the Baden Baden Summer Festival resulted in several recordings of operas with the Chamber Orchestra of Europe (see next paragraph), as well as the complete symphonies by Beethoven (summer 2021) and the Brahms cycle (summer 2022).
+
+He regularly conducts the Philadelphia and Rotterdam orchestras as well as the Chamber Orchestra of Europe on Asian or European tours; in November 2017, he conducted the Orchester Métropolitain de Montréal on its very first European tour, which was a huge success, followed, in November 2019, by a very prestigious American tour with singer Joyce DiDonato.
+
+Yannick is as comfortable at the opera as at the concert. After having cut his teeth at the Opéra de Montréal from 2000 to 2004 in _L'Incoronazione di Poppea_, _The Barber of Seville_, _Cosi fan tutte_, _Pelléas et Mélisande_ and _L'Elisir d' amore_, he returns sporadically for _Wozzeck_, _Madame Butterfly_, _Salomé and Elektra_. He made his debut at the Salzburg Festival in 2008 with a new production of _Romeo and Juliet_ by Gounod and returned there in 2010 and 2011 for _Don Giovanni_ by Mozart. It was during the 2009-2010 season that he made his debut at the Metropolitan Opera (MET) in a new production of _Carmen_ by Bizet; thereafter, he returned there each season to conduct _Don Carlo_, _Faust_, _La Traviata_, _Rusalka_, _Otello_, _Der Fliegende Hollander_, _Parsifal and Elektra_ before becoming its musical director; in this position, he conducted _La Traviata_, _Pelléas et Mélisande_, _Dialogues des Carmélites_, _Turandot_, _Wozzeck_, _Tosca_, _Fire shut up in my bones_, _Eurydice_ and _Don Carlo_ (in French). In addition, during the 2022-2023 season, he will in turn conduct _The Hours_, _Lohengrin_, _Champion_ and _La Bohême_. He has conducted at the Teatro alla Scala (Milan), the Royal Opera House (Covent Garden, London), the Netherlands Opera (Amsterdam) and the Vienna Staatsoper (Vienna). With the Rotterdams Philharmonisch Orkest, just before the start of the pandemic, he conducted a semi-staged version of _Die fraù ohne schatten_ by Richard Strauss. In 2011, he undertook the cycle of Mozart's last operas for the Festspielhaus Baden Baden, all recorded "live" by Deutsche Grammophon; to date, the following titles have appeared: _Di Zauberflöte_; _La Clemenza di Tito_; _Le Nozze di Figaro_; _Entführung aus dem Serail_; _Cosi fan tutte_; _Don Giovanni_, most of them with the Chamber Orchestra of Europe. In April 2022, with the Rotterdams Philharmonisc Orkest, he conducted _Rheingold_ by Richard Wagner in concert version during a tour in Rotterdam, Paris, Dortmund and Baden Baden which drew the highest praise to the entire production. Several films or sequences have been shot on his career, the most complete, released in 2021, entitled "Yannick, an Artist's Journey" by Susan Froamke, prod uced  
+by the MET.
+
+The maestro records exclusively for Deutsche Grammophon. September 2013 marks his first symphonic recording under this prestigious banner; for the occasion, he directs the Philadelphia orchestra which had not recorded under a renowned label since 1997; their record Stravinsky (_The Rite of Spring_)-Stokowski (transcriptions by Bach and Stravinsky) proved to be a huge success. With the Chamber of Europe Orchestra, he recorded the complete Mendelssohn Symphonies as well as the complete works of Schumann Symphonies; with the Rotterdams Philhamonisch Orkest, _a souvenir box_; with Daniil Trifonov and the Philadelphia Orchestra, two discs of 4 piano concertos by Rachmaninoff. His DG discography includes several other recordings, including Tchaikovsky with Lisa Batiashvili and the Rotterdam Philharmonic Orchestra; and _Visions of Prokofiev_ with Lisa Batiashvili and the Chamber Orchestra of Europe. Following a few stage performances of Mass by Leonard Bernstein, Yannick conducts the Philadelphia Orchestra as well as all the participants in a recording which was released in March 2018. In 2021, still with the Philadelphia Orchestra, he engraves Florence Price's Symphonies 1 and 3; this disc earned him a Grammy award for "best orchestral performance". With ATMA Classique and the Orchester Métropolitain de Montréal, with whom he began recording in 2000, a special box set brings together all the Bruckner Symphonies recorded over the years. Thereafter, he undertook with them the Cycle Sibelius. A return to the piano during the pandemic allows his first solo piano album, _Introspection_, to see the light of day on Deutsche Grammophon (February 2021). Other recordings are available on various labels: Rotterdam Philharmonic Orchestra (EMI Classics, BIS); London Philharmonic Orchestra (LPO label); Montreal Metropolitan Orchestra (ATMA Classic); Berliner Philharmoniker (house label); etc.
+
+Yannick studied piano, conducting, composition, and chamber music at the Conservatoire de musique du Québec in Montreal and choral conducting at the Westminster Choir College in Princeton, New Jersey before going on to study with renowned conductors, most notably the Italian maestro Carlo Maria Giulini. By the time he made his European debut in 2004, he had already founded his own professional orchestra and vocal ensemble, La Chapelle de Montréal, going on to conduct all the major ensembles in Canada. His honours include his first _Grammy Award_ for the _Florence Price_ recording with the Philadelphia Orchestra (2022), _Musical America_’s Artist of the Year (2016), _Eco Klassik_’s Conductor of the year (2014), and the following Awards: Virginia-Parker (2000); Royal Philharmonic Society (2009); National Arts Centre (2010); Denise-Pelletier (2015); Medal of Honor of the Quebec National Assembly (2015); Oskar Morawetz (2017). He holds six honorary doctorates from the Université du Québec à Montréal (2011), Curtis Institute in Philadelphia (2014), Westminster Choir College of Rider University in Princeton (2015), McGill University in Montreal (2017), Université de Montréal (2017); University of Pennsylvania (2018). He was appointed a Companion of the Order of Canada (2012), Companion ot the Order of Arts and Letters of Québec (2015), Officer of the Order of Québec (2015), Officer of the Order of Montreal (2017) and Fellow of the Royal Conservatory of Music (2020).

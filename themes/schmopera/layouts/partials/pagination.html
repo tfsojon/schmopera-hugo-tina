@@ -1,0 +1,59 @@
+{{/*
+
+  {# ------------------------------------------------------- #}
+  {# PARTIAL TEMPLATE: PAGINTAION                            #}
+  {# ------------------------------------------------------- #}
+  
+*/}}
+{{- $paginator := .Paginator -}}
+{{- $adjacent_links := 2 -}}
+{{- $max_links := (add (mul $adjacent_links 2) 1) -}}
+{{- $lower_limit := (add $adjacent_links 1) -}}
+{{- $upper_limit := (sub $paginator.TotalPages $adjacent_links) -}}
+{{- if gt $paginator.TotalPages 1 -}}
+  <ul class="pagination">
+    {{- if $paginator.HasPrev -}}
+    <li class="pagination__item pagination__item--prev">
+      <a href="{{- $paginator.Prev.URL -}}" class="pagination__link pagination__link--prev">
+        <i class="icon-arrow-left"></i>
+        <span>Prev Page</span>
+      </a>
+    </li>
+    {{- end -}}
+    {{- range $paginator.Pagers -}}
+      {{- $.Scratch.Set "page_number_flag" false -}}
+      {{- if gt $paginator.TotalPages $max_links -}}
+        {{- if le $paginator.PageNumber $lower_limit -}}
+          {{- if le .PageNumber $max_links -}}
+            {{- $.Scratch.Set "page_number_flag" true -}}
+          {{- end -}}
+        {{- else if ge $paginator.PageNumber $upper_limit -}}
+          {{- if gt .PageNumber (sub $paginator.TotalPages $max_links) -}}
+            {{- $.Scratch.Set "page_number_flag" true -}}
+          {{- end -}}
+        {{- else -}}
+          {{- if and ( ge .PageNumber (sub $paginator.PageNumber $adjacent_links) ) ( le .PageNumber (add $paginator.PageNumber $adjacent_links) ) -}}
+            {{- $.Scratch.Set "page_number_flag" true -}}
+          {{- end -}}
+        {{- end -}}
+      {{- else -}}
+        {{- $.Scratch.Set "page_number_flag" true -}}
+      {{- end -}}
+      {{- if eq ($.Scratch.Get "page_number_flag") true -}}
+        <li class="pagination__item{{ if eq . $paginator }} pagination__item--current{{ end }}">
+          <a href="{{- .URL -}}" class="pagination__link">
+            {{- .PageNumber -}}
+          </a>
+        </li>
+      {{- end -}}
+    {{- end -}}
+    {{- if $paginator.HasNext -}}
+    <li class="pagination__item pagination__item--next">
+      <a href="{{- $paginator.Next.URL -}}" class="pagination__link pagination__link--next">
+        <span>Next Page</span>
+        <i class="icon-arrow-right"></i>
+      </a>
+    </li>
+    {{- end -}}
+  </ul>
+{{- end -}}

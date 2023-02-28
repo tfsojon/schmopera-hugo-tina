@@ -1,0 +1,96 @@
+{{/*
+
+{# ------------------------------------------------------- #}
+{# PARTIAL TEMPLATE: MEGANAV                               #}
+{# ------------------------------------------------------- #}
+
+search
+site map
+recent articles
+
+*/}}
+
+<nav id="nav-primary" class="nav--primary">
+  <div class="container">
+    <section class="nav--primary_content">
+      {{- /*
+
+        TODO:
+        Search
+        
+      <form action="/search-results/" method="get" data-search-index="false" class="nav--primary_search">
+        <input type="text" name="q" placeholder="Search the site..." id="tipue_search_input" />
+        <button type="submit"><i class="icon-search"></i></button>
+      </form>
+      */ -}}
+
+      {{- /* share */ -}}
+      <nav class="nav--share">
+        <h3>Share this page</h3>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.schmopera.com%2f&" class="social--facebook pill" title="Share on Facebook" target=_blank><i class="icon-facebook"></i> Share <em class="social--count_facebook" data-url="{{ .Permalink }}"></em></a>
+        <a href="https://twitter.com/share?url=https%3a%2f%2fwww.schmopera.com%2f&via=schmopera&text=Schmopera.com" class="social--twitter pill" title="Share on Twitter" target=_blank><i class="icon-twitter"></i> Tweet <em class="social--count_twitter" data-url="{{ .Permalink }}"></em></a>
+      </nav>
+
+      {{- /* site map */ -}}
+      <nav class="nav--primary_sitemap">
+        <h3>The Blog</h3>
+        <ul>
+          <li><a href="/">All Articles</a></li>
+          <li><a href="/categories/editorial/">Editorials</a></li>
+          <li><a href="/categories/how-to/">How-to</a></li>
+          <li><a href="/categories/humour/">Humour</a></li>
+          <li><a href="/categories/interview/">Interviews</a></li>
+          <li><a href="/categories/news/">News</a></li>
+          <li><a href="/categories/op-ed/">Op-Eds</a></li>
+          <li><a href="/categories/review/">Reviews</a></li>
+          <li><a href="/authors/">Authors</a></li>
+        </ul>
+
+        <h3>The Scene</h3>
+        <ul>
+          <!-- <li><a href="/scene/">What is it?</a></li> -->
+          <li><a href="/scene/companies">Companies</a></li>
+          <li><a href="/scene/people">People</a></li>
+        </ul>
+
+        {{/*
+        <h3>The Store</h3>
+        <ul>
+          <li><a href="https://www.facebook.com/schmopera/shop/?cid=1703249406614480">Hoodies</a></li>
+          <li><a href="https://www.facebook.com/schmopera/shop/?cid=1703249419947812">T-Shirts</a></li>
+        </ul>
+        */}}
+
+        <h3>Get Involved</h3>
+        <ul>
+          <li><a href="/about/contribute/">Contribute</a></li>
+          <li><a href="/about/invite-us/">Invite us</a></li>
+        </ul>
+
+        <h3>Schmopera</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/about/contact/">Contact us</a></li>
+          <li><a href="/about/media-relations/">Media Relations</a></li>
+          <li><a href="/about/advertising/">Advertising</a></li>
+          <li><a href="/about/marketing/">Marketing</a></li>
+        </ul>
+      </nav>
+
+      {{/* recent articles */}}
+      <nav class="nav--primary_recent-articles">
+        <a href=""><h3>Recent Articles</h3></a>
+        <ul class="post--list __micro">
+          {{ range first 10 (where $.Site.Pages "Type" "articles") }}
+            <li>
+                <a href="{{.Permalink}}" class="post--list-title">
+                  <em class="post--list-meta-date">{{.Date.Format "01.02.06"}}</em>
+                  <h4>{{.Title | htmlUnescape }}</h4>
+                </a>
+            </li>
+          {{ end }}
+        </ul>
+      </nav>
+    </section>
+  </div>
+</nav>
