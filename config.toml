@@ -1,4 +1,4 @@
-baseURL = "https://www.schmopera.com"
+baseURL = "https://schmopera-hugo-tina.netlify.app/"
 languageCode = "en-us"
 title = "Schmopera"
 theme = "schmopera"
